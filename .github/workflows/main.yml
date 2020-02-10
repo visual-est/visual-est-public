@@ -12,11 +12,6 @@ jobs:
         token: ${{ secrets.GITHUB_PAT_MY_PRIVATE_REPO }}
         ref: master
         path: private_source
-    - name: List
-      run: ls -la /home/runner/work/visual-est-public/private_source
-    - name: List 
-      working-directory: ${{ github.workspace }}
-      run: ls -la
     - name: Generate build number
       id: buildnumber
       uses: einaregilsson/build-number@v2 
@@ -45,7 +40,7 @@ jobs:
     needs: [create-release]
     runs-on: ${{ matrix.os }}
     env:
-      working-directory: ./private_source
+      working-directory: /home/runner/work/visual-est-public/private_source/private_source/
     strategy:
       matrix:
         os: [windows-latest, macos-latest]
@@ -59,6 +54,14 @@ jobs:
           token: ${{ secrets.GITHUB_PAT_MY_PRIVATE_REPO }}
           ref: master
           path: private_source
+          
+      - name: List
+        run: ls -la /home/runner/work/visual-est-public/private_source
+      - name: List 
+        working-directory: ${{env.working-directory}}
+        run: ls -la
+          
+            
       - name: Download the release.txt artifact
         uses: actions/download-artifact@v1
         with:
