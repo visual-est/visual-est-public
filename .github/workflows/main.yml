@@ -10,6 +10,7 @@ jobs:
       with:
         repository: visual-est/visual-est
         token: ${{ secrets.GITHUB_PAT_MY_PRIVATE_REPO }}
+        ref: master
     - name: Generate build number
       id: buildnumber
       uses: einaregilsson/build-number@v2 
