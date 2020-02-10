@@ -40,7 +40,7 @@ jobs:
     needs: [create-release]
     runs-on: ${{ matrix.os }}
     env:
-      working-directory: /home/runner/work/visual-est-public/private_source/private_source/
+      working-directory: ./private_source/
     strategy:
       matrix:
         os: [windows-latest, macos-latest]
@@ -56,7 +56,7 @@ jobs:
           path: private_source
           
       - name: List
-        run: ls -la /home/runner/work/visual-est-public/private_source
+        run: ls -la
       - name: List 
         working-directory: ${{env.working-directory}}
         run: ls -la
