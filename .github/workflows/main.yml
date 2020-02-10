@@ -59,10 +59,14 @@ jobs:
           repository: visual-est/visual-est
           token: ${{ secrets.GITHUB_PAT_MY_PRIVATE_REPO }}
           ref: master 
-      - name: Download the release.txt artifact
+      - name: Download the release_url.txt artifact
         uses: actions/download-artifact@v1
         with:
           name: release_url
+      - name: Download the release_version.txt artifact
+        uses: actions/download-artifact@v1
+        with:
+          name: release_version
       - name: Set up JDK 14 (Early Access)
         uses: actions/setup-java@v1
         with:
@@ -72,7 +76,7 @@ jobs:
         if: matrix.os == 'windows-latest'
         id: get_release_version_windows
         run: |
-          $value = [IO.File]::ReadAllText("release_url/release_version.txt")
+          $value = [IO.File]::ReadAllText("release_version/release_version.txt")
           echo "::set-output name=release_version::$value"
       - name: (Windows) Bump Version
         if: matrix.os == 'windows-latest'
@@ -83,7 +87,7 @@ jobs:
         if: matrix.os == 'macos-latest'
         id: get_release_version_macos
         run: |
-          value=`cat ./release_url/release_version.txt`
+          value=`cat ./release_version/release_version.txt`
           echo ::set-output name=release_version::$value
       - name: (macOS) Bump Version
         if: matrix.os == 'macos-latest'
