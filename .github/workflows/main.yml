@@ -47,7 +47,9 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v1
         with:
-          repository: visual-est
+          repository: visual-est/visual-est
+          token: ${{ secrets.GITHUB_PAT_MY_PRIVATE_REPO }}
+          ref: master
       - name: Download the release.txt artifact
         uses: actions/download-artifact@v1
         with:
