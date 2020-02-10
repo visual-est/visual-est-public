@@ -51,18 +51,7 @@ jobs:
         with:
           repository: visual-est/visual-est
           token: ${{ secrets.GITHUB_PAT_MY_PRIVATE_REPO }}
-          ref: master
-#          path: private_source
-          
-      - name: List
-        run: ls -la
-      - name: List ../
-        run: ls -la ../
-      - name: List 
-        working-directory: ${{env.working-directory}}
-        run: ls -la
-          
-            
+          ref: master 
       - name: Download the release.txt artifact
         uses: actions/download-artifact@v1
         with:
@@ -93,7 +82,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.get_release_info_windows.outputs.upload_url }} 
-          asset_path: ./VisualEST-Win.zip
+          asset_path: "${{env.working-directory}}VisualEST-Win.zip"
           asset_name: VisualEST-Win.zip
           asset_content_type: application/zip
 # macOS steps
@@ -115,6 +104,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.get_release_info_macos.outputs.upload_url }} 
-          asset_path: ./target/installer/Visual EST-1.0.0.pkg
+          asset_path: "${{env.working-directory}}/target/installer/Visual EST-1.0.0.pkg"
           asset_name: VisualEST-macOS.pkg.zip
           asset_content_type: application/zip 
