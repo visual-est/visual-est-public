@@ -61,7 +61,7 @@ jobs:
         with:
           java-version: 14-ea
       - name: Build with Maven
-        run: mvn -B package --file private_source/pom.xml
+        run: mvn -B package --file ./private_source/pom.xml
 # Windows steps
       - name: (Windows) Parse Release URL from release.txt
         if: matrix.os == 'windows-latest'
