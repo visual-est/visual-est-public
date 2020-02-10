@@ -9,7 +9,7 @@ jobs:
       uses: actions/checkout@v1
       with:
         repository: visual-est/visual-est
-        token: ${{ secrets.GitHub_PAT }}
+        token: ${{ secrets.GITHUB_PAT_MY_PRIVATE_REPO }}
     - name: Generate build number
       id: buildnumber
       uses: einaregilsson/build-number@v2 
