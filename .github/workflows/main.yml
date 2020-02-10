@@ -1,0 +1,112 @@
+name: Java CI
+on: [push]
+jobs:
+  create-release:
+    name: Create new release
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v1
+      with:
+        repository: https://github.com/visual-est/visual-est
+    - name: Generate build number
+      id: buildnumber
+      uses: einaregilsson/build-number@v2 
+      with:
+        token: ${{secrets.github_token}}
+    - name: Create new release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: 1.0.${{ steps.buildnumber.outputs.build_number }}
+        release_name: Release 1.0.${{ steps.buildnumber.outputs.build_number }}
+        draft: false
+        prerelease: true
+    - name: Put the Release URL into release.txt
+      run: echo "${{ steps.create_release.outputs.upload_url }}" > release_url.txt
+    - name: Upload the release.txt artifact
+      uses: actions/upload-artifact@v1
+      with:
+        name: release_url
+        path: release_url.txt
+
+  build-and-upload:
+    name: Build and Upload
+    needs: [create-release]
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [windows-latest, macos-latest]
+      fail-fast: false
+    steps:
+# Common steps
+      - name: Check out code
+        uses: actions/checkout@v1
+        with:
+          repository: https://github.com/visual-est/visual-est
+      - name: Download the release.txt artifact
+        uses: actions/download-artifact@v1
+        with:
+          name: release_url
+      - name: Set up JDK 14 (Early Access)
+        uses: actions/setup-java@v1
+        with:
+          java-version: 14-ea
+      - name: Build with Maven
+        run: mvn -B package --file pom.xml
+# Windows steps
+      - name: (Windows) Parse Release URL from release.txt
+        if: matrix.os == 'windows-latest'
+        id: get_release_info_windows
+        run: |
+          $value = [IO.File]::ReadAllText("release_url/release_url.txt")
+          echo "::set-output name=upload_url::$value"
+      - name: (Windows) Zip the artefacts
+        if: matrix.os == 'windows-latest'
+        run: powershell.exe -NoLogo -NoProfile -command "& { Compress-Archive -Path ./target/installer/VisualEST/ -DestinationPath VisualEST-Win.zip }"
+#       - name: (Windows) Upload the artefacts
+#         if: matrix.os == 'windows-latest'
+#         uses: actions/upload-artifact@master
+#         with:
+#           name: VisualEST-Win.zip
+#           path: VisualEST-Win.zip
+      - name: (Windows) Upload the release assets
+        if: matrix.os == 'windows-latest'
+        id: upload-release-asset-windows 
+        uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.get_release_info_windows.outputs.upload_url }} 
+          asset_path: ./VisualEST-Win.zip
+          asset_name: VisualEST-Win.zip
+          asset_content_type: application/zip
+# macOS steps
+      - name: (macOS) Parse Release URL from release.txt
+        if: matrix.os == 'macos-latest'
+        id: get_release_info_macos
+        run: |
+          value=`cat ./release_url/release_url.txt`
+          echo ::set-output name=upload_url::$value 
+      - name: (macOS) Zip the artefacts
+        if: matrix.os == 'macos-latest'
+        run: zip -r installers-macOS.zip ./target/installer/
+#       - name: (macOS) Upload the artefacts
+#         if: matrix.os == 'macos-latest'
+#         uses: actions/upload-artifact@v1
+#         with:
+#           name: VisualEST.pkg 
+#           path: target/installer/Visual EST-1.0.0.pkg
+      - name: (macOS) Upload the release assets
+        if: matrix.os == 'macos-latest'
+        id: upload-release-asset-macos 
+        uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.get_release_info_macos.outputs.upload_url }} 
+          asset_path: ./target/installer/Visual EST-1.0.0.pkg
+          asset_name: VisualEST-macOS.pkg.zip
+          asset_content_type: application/zip 
