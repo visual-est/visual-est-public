@@ -13,7 +13,6 @@ jobs:
         ref: master
         path: private_source
     - name: List
-      working-directory: ${{ github.workspace }}
       run: ls -la
     - name: List 
       working-directory: ${{ github.workspace }}
