@@ -11,7 +11,6 @@ jobs:
         repository: visual-est/visual-est
         token: ${{ secrets.GITHUB_PAT_MY_PRIVATE_REPO }}
         ref: master
-        path: private_source
     - name: Generate build number
       id: buildnumber
       uses: einaregilsson/build-number@v2 
@@ -40,7 +39,7 @@ jobs:
     needs: [create-release]
     runs-on: ${{ matrix.os }}
     env:
-      working-directory: ./private_source/
+      working-directory: ../visual-est/
     strategy:
       matrix:
         os: [windows-latest, macos-latest]
