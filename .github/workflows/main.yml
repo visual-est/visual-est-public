@@ -120,7 +120,7 @@ jobs:
           asset_name: VisualEST-Win.zip
           asset_content_type: application/zip
 # macOS steps
-      - name: (macOS) Parse Release URL from release.txt
+      - name: (macOS) Parse Release URL from release_url.txt
         if: matrix.os == 'macos-latest'
         id: get_release_info_macos
         run: |
@@ -138,6 +138,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.get_release_info_macos.outputs.upload_url }} 
-          asset_path: "${{env.working-directory}}/target/installer/Visual EST-1.0.0.pkg"
+          asset_path: "${{env.working-directory}}/target/installer/Visual EST-${{ steps.get_release_version_windows.outputs.release_version }}.pkg"
           asset_name: VisualEST-macOS.pkg.zip
           asset_content_type: application/zip 
