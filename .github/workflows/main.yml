@@ -8,7 +8,7 @@ jobs:
     - name: Check out code
       uses: actions/checkout@v1
       with:
-        repository: visual-est
+        repository: visual-est/visual-est
         token: ${{ secrets.GitHub_PAT }}
     - name: Generate build number
       id: buildnumber
