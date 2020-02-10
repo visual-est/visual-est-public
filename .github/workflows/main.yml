@@ -11,7 +11,7 @@ jobs:
         repository: visual-est/visual-est
         token: ${{ secrets.GITHUB_PAT_MY_PRIVATE_REPO }}
         ref: master
-        path: ./
+        path: private_source
     - name: Generate build number
       id: buildnumber
       uses: einaregilsson/build-number@v2 
@@ -51,7 +51,7 @@ jobs:
           repository: visual-est/visual-est
           token: ${{ secrets.GITHUB_PAT_MY_PRIVATE_REPO }}
           ref: master
-          path: ./
+          path: private_source
       - name: Download the release.txt artifact
         uses: actions/download-artifact@v1
         with:
@@ -61,7 +61,7 @@ jobs:
         with:
           java-version: 14-ea
       - name: Build with Maven
-        run: mvn -B package --file pom.xml
+        run: mvn -B package --file private_source/pom.xml
 # Windows steps
       - name: (Windows) Parse Release URL from release.txt
         if: matrix.os == 'windows-latest'
