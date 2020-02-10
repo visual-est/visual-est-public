@@ -12,6 +12,12 @@ jobs:
         token: ${{ secrets.GITHUB_PAT_MY_PRIVATE_REPO }}
         ref: master
         path: private_source
+    - name: List
+      working-directory: ${{ github.workspace }}
+      run: ls -la
+    - name: List 
+      working-directory: ${{ github.workspace }}
+      run: ls -la
     - name: Generate build number
       id: buildnumber
       uses: einaregilsson/build-number@v2 
@@ -39,6 +45,8 @@ jobs:
     name: Build and Upload
     needs: [create-release]
     runs-on: ${{ matrix.os }}
+    env:
+      working-directory: ./private_source
     strategy:
       matrix:
         os: [windows-latest, macos-latest]
@@ -61,7 +69,8 @@ jobs:
         with:
           java-version: 14-ea
       - name: Build with Maven
-        run: mvn -B package --file ./private_source/pom.xml
+        working-directory: ${{env.working-directory}}
+        run: mvn -B package --file pom.xml
 # Windows steps
       - name: (Windows) Parse Release URL from release.txt
         if: matrix.os == 'windows-latest'
@@ -70,6 +79,7 @@ jobs:
           $value = [IO.File]::ReadAllText("release_url/release_url.txt")
           echo "::set-output name=upload_url::$value"
       - name: (Windows) Zip the artefacts
+        working-directory: ${{env.working-directory}}
         if: matrix.os == 'windows-latest'
         run: powershell.exe -NoLogo -NoProfile -command "& { Compress-Archive -Path ./target/installer/VisualEST/ -DestinationPath VisualEST-Win.zip }"
       - name: (Windows) Upload the release assets
@@ -91,6 +101,7 @@ jobs:
           value=`cat ./release_url/release_url.txt`
           echo ::set-output name=upload_url::$value 
       - name: (macOS) Zip the artefacts
+        working-directory: ${{env.working-directory}}
         if: matrix.os == 'macos-latest'
         run: zip -r installers-macOS.zip ./target/installer/
       - name: (macOS) Upload the release assets
