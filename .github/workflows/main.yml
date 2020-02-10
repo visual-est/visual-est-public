@@ -11,7 +11,7 @@ jobs:
         repository: visual-est/visual-est
         token: ${{ secrets.GITHUB_PAT_MY_PRIVATE_REPO }}
         ref: master
-        path: private_source
+        path: ${{ github.workspace }}
     - name: List
       run: ls -la
     - name: List 
