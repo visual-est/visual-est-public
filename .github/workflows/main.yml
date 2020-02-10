@@ -8,7 +8,7 @@ jobs:
     - name: Check out code
       uses: actions/checkout@v1
       with:
-        repository: https://github.com/visual-est/visual-est
+        repository: visual-est
     - name: Generate build number
       id: buildnumber
       uses: einaregilsson/build-number@v2 
@@ -45,7 +45,7 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v1
         with:
-          repository: https://github.com/visual-est/visual-est
+          repository: visual-est
       - name: Download the release.txt artifact
         uses: actions/download-artifact@v1
         with:
