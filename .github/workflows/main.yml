@@ -26,13 +26,20 @@ jobs:
         release_name: Release 1.0.${{ steps.buildnumber.outputs.build_number }}
         draft: false
         prerelease: true
-    - name: Put the Release URL into release.txt
+    - name: Put the Release URL into release_url.txt
       run: echo "${{ steps.create_release.outputs.upload_url }}" > release_url.txt
-    - name: Upload the release.txt artifact
+    - name: Upload the release_url.txt artifact
       uses: actions/upload-artifact@v1
       with:
         name: release_url
         path: release_url.txt
+    - name: Put the Release Version into release_version.txt
+      run: echo "1.0.${{ steps.buildnumber.outputs.build_number }}" > release_version.txt
+    - name: Upload the release_version.txt artifact
+      uses: actions/upload-artifact@v1
+      with:
+        name: release_version
+        path: release_version.txt
 
   build-and-upload:
     name: Build and Upload
@@ -60,6 +67,29 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 14-ea
+# Windows steps
+      - name: (Windows) Parse Release Version from release_version.txt
+        if: matrix.os == 'windows-latest'
+        id: get_release_version_windows
+        run: |
+          $value = [IO.File]::ReadAllText("release_url/release_version.txt")
+          echo "::set-output name=release_version::$value"
+      - name: (Windows) Bump Version
+        if: matrix.os == 'windows-latest'
+        working-directory: ${{env.working-directory}}
+        run: mvn versions:set -DnewVersion=${{ steps.get_release_version_windows.outputs.release_version }} 
+# macOS steps
+      - name: (macOS) Parse Release Version from release_version.txt
+        if: matrix.os == 'macos-latest'
+        id: get_release_version_macos
+        run: |
+          value=`cat ./release_url/release_version.txt`
+          echo ::set-output name=release_version::$value
+      - name: (macOS) Bump Version
+        if: matrix.os == 'macos-latest'
+        working-directory: ${{env.working-directory}}
+        run: mvn versions:set -DnewVersion=${{ steps.get_release_version_macos.outputs.release_version }} 
+# Common steps
       - name: Build with Maven
         working-directory: ${{env.working-directory}}
         run: mvn -B package --file pom.xml
@@ -91,7 +121,7 @@ jobs:
         id: get_release_info_macos
         run: |
           value=`cat ./release_url/release_url.txt`
-          echo ::set-output name=upload_url::$value 
+          echo ::set-output name=upload_url::$value
       - name: (macOS) Zip the artefacts
         working-directory: ${{env.working-directory}}
         if: matrix.os == 'macos-latest'
