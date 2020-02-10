@@ -13,7 +13,7 @@ jobs:
         ref: master
         path: private_source
     - name: List
-      run: ls -la
+      run: ls -la /home/runner/work/visual-est-public/private_source
     - name: List 
       working-directory: ${{ github.workspace }}
       run: ls -la
