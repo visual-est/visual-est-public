@@ -11,6 +11,7 @@ jobs:
         repository: visual-est/visual-est
         token: ${{ secrets.GITHUB_PAT_MY_PRIVATE_REPO }}
         ref: master
+        path: ./
     - name: Generate build number
       id: buildnumber
       uses: einaregilsson/build-number@v2 
@@ -50,6 +51,7 @@ jobs:
           repository: visual-est/visual-est
           token: ${{ secrets.GITHUB_PAT_MY_PRIVATE_REPO }}
           ref: master
+          path: ./
       - name: Download the release.txt artifact
         uses: actions/download-artifact@v1
         with:
@@ -70,12 +72,6 @@ jobs:
       - name: (Windows) Zip the artefacts
         if: matrix.os == 'windows-latest'
         run: powershell.exe -NoLogo -NoProfile -command "& { Compress-Archive -Path ./target/installer/VisualEST/ -DestinationPath VisualEST-Win.zip }"
-#       - name: (Windows) Upload the artefacts
-#         if: matrix.os == 'windows-latest'
-#         uses: actions/upload-artifact@master
-#         with:
-#           name: VisualEST-Win.zip
-#           path: VisualEST-Win.zip
       - name: (Windows) Upload the release assets
         if: matrix.os == 'windows-latest'
         id: upload-release-asset-windows 
@@ -97,12 +93,6 @@ jobs:
       - name: (macOS) Zip the artefacts
         if: matrix.os == 'macos-latest'
         run: zip -r installers-macOS.zip ./target/installer/
-#       - name: (macOS) Upload the artefacts
-#         if: matrix.os == 'macos-latest'
-#         uses: actions/upload-artifact@v1
-#         with:
-#           name: VisualEST.pkg 
-#           path: target/installer/Visual EST-1.0.0.pkg
       - name: (macOS) Upload the release assets
         if: matrix.os == 'macos-latest'
         id: upload-release-asset-macos 
