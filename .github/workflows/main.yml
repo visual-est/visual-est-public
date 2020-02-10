@@ -81,7 +81,7 @@ jobs:
       - name: (Windows) Bump Version
         if: matrix.os == 'windows-latest'
         working-directory: ${{env.working-directory}}
-        run: mvn versions:set -DnewVersion=${{ steps.get_release_version_windows.outputs.release_version }} 
+        run: mvn versions:set -DnewVersion="${{ steps.get_release_version_windows.outputs.release_version }}"
 # macOS steps
       - name: (macOS) Parse Release Version from release_version.txt
         if: matrix.os == 'macos-latest'
@@ -92,7 +92,7 @@ jobs:
       - name: (macOS) Bump Version
         if: matrix.os == 'macos-latest'
         working-directory: ${{env.working-directory}}
-        run: mvn versions:set -DnewVersion=${{ steps.get_release_version_macos.outputs.release_version }} 
+        run: mvn versions:set -DnewVersion="${{ steps.get_release_version_macos.outputs.release_version }}"
 # Common steps
       - name: Build with Maven
         working-directory: ${{env.working-directory}}
