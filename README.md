@@ -1,4 +1,4 @@
-# Visual EST
+# Visual EST ![CI](https://github.com/visual-est/visual-est-public/workflows/Java%20CI/badge.svg)
 
 
 
@@ -6,7 +6,7 @@
 
 All notable changes to this project will be documented here.
 
-## [Release 1.0.20](https://github.com/visual-est/visual-est-public/releases/tag/1.0.19) (2020-02-29)
+## [Release 1.0.21](https://github.com/visual-est/visual-est-public/releases/tag/1.0.21) (2020-02-29)
 
 
 ### Features
