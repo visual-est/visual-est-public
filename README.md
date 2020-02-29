@@ -22,6 +22,9 @@ Visual EST is an [EST](https://tools.ietf.org/html/rfc7030) client with graphica
 
 **Note:** Both applications (Windows and macOS) are not code-signed, so you will see warning about this.
 
+## Screenshots
+![alt text](https://github.com/visual-est/visual-est-public/blob/master/Main%20Window.png "Main Window")
+
 
 ## Changelog
 
