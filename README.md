@@ -30,8 +30,14 @@ Visual EST is an [EST](https://tools.ietf.org/html/rfc7030) client with graphica
 
 All notable changes to this project will be documented here.
 
-### [Release 1.0.22](https://github.com/visual-est/visual-est-public/releases/tag/1.0.22) (2020-03-02)
 
+### [Release 1.0.23](https://github.com/visual-est/visual-est-public/releases/tag/1.0.23) (2020-03-03)
+
+#### Features
+* Double click on a log event will open it in a new dialog.
+
+
+### [Release 1.0.22](https://github.com/visual-est/visual-est-public/releases/tag/1.0.22) (2020-03-02)
 
 #### Bug Fixes
 
