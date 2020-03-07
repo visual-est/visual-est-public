@@ -33,7 +33,7 @@ All notable changes to this project will be documented here.
 ### [Release 1.0.24](https://github.com/visual-est/visual-est-public/releases/tag/1.0.24) (2020-03-05)
 
 #### Features
-* A new way to select client authentication certificate. Users can now drag & drop, paste, or browse certificate. 
+* A new way to select client authentication certificate. Users can now drag & drop, paste, or browse certificate.
 
 ### [Release 1.0.23](https://github.com/visual-est/visual-est-public/releases/tag/1.0.23) (2020-03-03)
 
