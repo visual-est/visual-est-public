@@ -30,6 +30,11 @@ Visual EST is an [EST](https://tools.ietf.org/html/rfc7030) client with graphica
 
 All notable changes to this project will be documented here.
 
+### [Release 1.0.25](https://github.com/visual-est/visual-est-public/releases/tag/1.0.25) (2020-03-08) 
+
+#### Features
+* The sections for Certificate and Username & Password authentication has been merged into one. In addition, the Additional Settings section has been moved as separate tab.
+
 ### [Release 1.0.24](https://github.com/visual-est/visual-est-public/releases/tag/1.0.24) (2020-03-05) 
 
 #### Features
