@@ -30,42 +30,35 @@ Visual EST is an [EST](https://tools.ietf.org/html/rfc7030) client with graphica
 
 All notable changes to this project will be documented here.
 
+### [Release 1.0.27](https://github.com/visual-est/visual-est-public/releases/tag/1.0.27) (2020-03-09)
+#### Bug Fixes
+* Fix the eye icon on the password fields
 
 ### [Release 1.0.26](https://github.com/visual-est/visual-est-public/releases/tag/1.0.26) (2020-03-08)
-
 #### Features
 * Tabs are now detachable, so users are able to see General and Log tab at the same time.
 
 ### [Release 1.0.25](https://github.com/visual-est/visual-est-public/releases/tag/1.0.25) (2020-03-08)
-
 #### Features
 * The sections for Certificate and Username & Password authentication has been merged into one. In addition, the Additional Settings section has been moved as separate tab.
 
 ### [Release 1.0.24](https://github.com/visual-est/visual-est-public/releases/tag/1.0.24) (2020-03-05) 
-
 #### Features
 * A new way to select client authentication certificate. Users can now drag & drop, paste, or browse certificate.
 
 ### [Release 1.0.23](https://github.com/visual-est/visual-est-public/releases/tag/1.0.23) (2020-03-03)
-
 #### Features
 * Double click on a log event will open it in a new dialog.
 
-
 ### [Release 1.0.22](https://github.com/visual-est/visual-est-public/releases/tag/1.0.22) (2020-03-02)
-
 #### Bug Fixes
-
 * Certificate details are now showing UnstructuredName and UnstructuredAddress
 * Certificate details window displays KU and EKU
 * The attributes of the summary panel of the enrollend are now selectable
 * Certificate details now shows the Serial Number in HEX
 
 ### [Release 1.0.21](https://github.com/visual-est/visual-est-public/releases/tag/1.0.21) (2020-02-29)
-
-
 #### Features
-
 * Refactoring the validation logic of the client authentication certificate. How it includes expiration, chain, and revocation (CRL & OCSP) validations.
 ]
 #### Bug Fixes
