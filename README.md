@@ -30,6 +30,10 @@ Visual EST is an [EST](https://tools.ietf.org/html/rfc7030) client with graphica
 
 All notable changes to this project will be documented here.
 
+### [Release 1.0.28](https://github.com/visual-est/visual-est-public/releases/tag/1.0.28) (2020-03-24)
+#### Bug Fixes
+* Fix an issue that prevents some private key formats to be used for CSR generation.
+
 ### [Release 1.0.27](https://github.com/visual-est/visual-est-public/releases/tag/1.0.27) (2020-03-09)
 #### Bug Fixes
 * Fix the eye icon on the password fields
