@@ -139,5 +139,5 @@ jobs:
         with:
           upload_url: ${{ steps.get_release_info_macos.outputs.upload_url }} 
           asset_path: "${{env.working-directory}}/target/installer/Visual EST-${{ steps.get_release_version_macos.outputs.release_version }}.pkg"
-          asset_name: VisualEST-macOS.pkg.zip
-          asset_content_type: application/zip 
+          asset_name: VisualEST-macOS.pkg
+          asset_content_type: application/octet-stream 
