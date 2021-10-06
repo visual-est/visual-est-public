@@ -67,10 +67,10 @@ jobs:
         uses: actions/download-artifact@v1
         with:
           name: release_version
-      - name: Set up JDK 14 (Early Access)
+      - name: Set up JDK 17
         uses: actions/setup-java@v1
         with:
-          java-version: 14-ea
+          java-version: 17
 # Windows steps
       - name: (Windows) Parse Release Version from release_version.txt
         if: matrix.os == 'windows-latest'
