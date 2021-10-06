@@ -30,6 +30,13 @@ Visual EST is an [EST](https://tools.ietf.org/html/rfc7030) client with graphica
 
 All notable changes to this project will be documented here.
 
+### [Release 1.0.115](https://github.com/visual-est/visual-est-public/releases/tag/1.0.115) (2021-10-06)
+#### Features
+* Now Visual EST uses Bouncy Castle 1.69, Java 17, and JavaFX 14.
+
+#### Bug Fixes
+* Now on macOS Visual EST has the right icon.
+
 ### [Release 1.0.28](https://github.com/visual-est/visual-est-public/releases/tag/1.0.28) (2020-03-24)
 #### Bug Fixes
 * Fix an issue that prevents some private key formats to be used for CSR generation.
