@@ -29,9 +29,22 @@ Visual EST is an [EST](https://tools.ietf.org/html/rfc7030) client with graphica
 
 All notable changes to this project will be documented here.
 
+
+### [Release 1.1.87](https://github.com/visual-est/visual-est-public/releases/tag/1.1.87) (2026-04-21)
+
+#### Bug Fixes
+
+**Previously**, when the trust anchor mode was set to _"Add Additional From"_, the additional certificates from the selected file were added on top of the EST CA certificates only. The JRE built-in trust store was silently ignored, causing TLS connections to servers with certificates issued by well-known public CAs to fail unexpectedly.
+
+**Now**, selecting _"Add Additional From"_ correctly merges all three sources:
+1. The JRE built-in trust store
+2. The EST CA certificates retrieved via _Get CA Certificates_
+3. The additional trust anchors loaded from the specified file
+
+
 ### [Release 1.1.84](https://github.com/visual-est/visual-est-public/releases/tag/1.1.84) (2026-04-21)
 
-### What's New
+#### Bug Fixes
 
 - **Java 25 LTS** — The application now ships with a bundled Java 25 LTS runtime, bringing improved performance, security updates, and long-term support.
 - **Updated dependencies** — All third-party libraries have been updated to their latest versions.
