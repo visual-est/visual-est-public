@@ -1,5 +1,4 @@
 # Visual EST 
-![CI](https://github.com/visual-est/visual-est-public/workflows/Java%20CI/badge.svg)
 
 Visual EST is an [EST](https://tools.ietf.org/html/rfc7030) client with graphical interface. It uses the EST library from [Bouncy Castle](https://www.bouncycastle.org/) and [JavaFX](https://openjfx.io/).
 
@@ -29,6 +28,19 @@ Visual EST is an [EST](https://tools.ietf.org/html/rfc7030) client with graphica
 ## Changelog
 
 All notable changes to this project will be documented here.
+
+### [Release 1.1.84](https://github.com/visual-est/visual-est-public/releases/tag/1.1.84) (2026-04-21)
+
+### What's New
+
+- **Java 25 LTS** — The application now ships with a bundled Java 25 LTS runtime, bringing improved performance, security updates, and long-term support.
+- **Updated dependencies** — All third-party libraries have been updated to their latest versions.
+- **Updated copyright** — Copyright notice updated to 2020–2026.
+
+### Known Issues
+
+> ⚠️ **Dark theme glitches** — The Dark theme may display visual artifacts or rendering glitches in certain UI areas. We are aware of the issue and it will be addressed in an upcoming release.  
+> **Workaround:** Switch to the Light theme to avoid the problem.
 
 ### [Release 1.0.115](https://github.com/visual-est/visual-est-public/releases/tag/1.0.115) (2021-10-06)
 #### Features
