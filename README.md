@@ -29,6 +29,10 @@ Visual EST is an [EST](https://tools.ietf.org/html/rfc7030) client with graphica
 
 All notable changes to this project will be documented here.
 
+### [Release 1.1.88](https://github.com/visual-est/visual-est-public/releases/tag/1.1.88) (2026-05-19)
+
+#### Bug Fixes
+- Fixed issue where `NOT_SPECIFIED` trust mode incorrectly returned empty trust anchors instead of the system trust store, causing EST client to fall back to insecure 'trust all' mode
 
 ### [Release 1.1.87](https://github.com/visual-est/visual-est-public/releases/tag/1.1.87) (2026-04-21)
 
